@@ -1,0 +1,321 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tic-Tac-Toe2</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Arial', sans-serif;
+                background: linear-gradient(135deg, #A2C2E2, #C3A8D4); /* Light Blue and Lavender Gradient */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .game-container {
+                text-align: center;
+                max-width: 600px;
+                width: 100%;
+                padding: 30px;
+                background: #D9F7F7; /* Pastel Mint background */
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border: 4px solid #A3D8D8; /* Soft contrast border */
+            }
+
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 25px;
+                color: #4F6D7A; /* Muted teal text color */
+            }
+
+            .game-board {
+                display: grid;
+                gap: 10px;
+                margin-bottom: 20px;
+                background-color: #E4F0F0; /* Light pastel background */
+                border-radius: 15px;
+                padding: 15px;
+            }
+
+            .cell {
+                width: 100%;
+                height: 80px;
+                background-color: #B4E4E4; /* Soft mint color */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2.5rem;
+                cursor: pointer;
+                border-radius: 8px;
+                font-weight: bold;
+                color: #4F6D7A; /* Muted teal color for text */
+                transition: transform 0.2s ease, background-color 0.3s ease;
+            }
+
+            .cell:not(.x):not(.o):hover {
+                background-color: #C4F1F1; /* Light turquoise hover effect */
+                transform: scale(1.1);
+            }
+
+            .cell.x, .cell.o {
+                animation: pop-in 0.4s ease forwards;
+            }
+
+            @keyframes pop-in {
+                0% {
+                    transform: scale(0);
+                    opacity: 0;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            .cell.x {
+                color: #FF6F61; /* Coral red for player X */
+            }
+
+            .cell.o {
+                color: #FFBC42; /* Soft yellow-orange for player O */
+            }
+
+            .game-status {
+                margin-bottom: 25px;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #4F6D7A; /* Soft teal color for status */
+            }
+
+            .reset-btn, .mode-btn {
+                padding: 12px 25px;
+                font-size: 1.2rem;
+                background-color: #7C9B8E;
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: background-color 0.3s;
+            }
+
+            .reset-btn:hover, .mode-btn:hover {
+                background-color: #A8C9C4;
+            }
+
+            .popup {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                color: #fff;
+                z-index: 10;
+            }
+
+            .popup h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+
+            .popup button {
+                padding: 12px 30px;
+                font-size: 1.2rem;
+                background-color: #76D7C4;
+                color: #222;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: background-color 0.3s;
+            }
+
+            .popup button:hover {
+                background-color: #FF6F61;
+            }
+
+            .score-board {
+                font-size: 1.2rem;
+                margin-top: 20px;
+                color: #4F6D7A;
+            }
+
+            @media (max-width: 600px) {
+                .game-board {
+                    gap: 10px;
+                }
+
+                .cell {
+                    height: 70px;
+                    font-size: 1.8rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="home-screen" class="game-container">
+            <h1>Tic-Tac-Toe</h1>
+            <button class="mode-btn" onclick="startGame(3)">3x3 Mode</button><br><br>
+            <button class="mode-btn" onclick="startGame(4)">4x4 Mode</button><br><br>
+            <button class="mode-btn" onclick="startGame(5)">5x5 Mode</button><br><br>
+            <a href="index.html"><button class="mode-btn">Back</button></a>
+        </div>
+
+        <div id="game-screen" class="game-container" style="display:none;">
+            <h1 id="game-title"></h1>
+            <div class="game-board" id="game-board"></div>
+            <div class="game-status" id="game-status"></div>
+            <button class="reset-btn" onclick="resetGame()">Reset Game</button>
+            <button class="reset-btn" onclick="goHome()">Home</button>
+            
+            <!-- Scoreboard Section -->
+            <div class="score-board">
+                <p>Player X: <span id="score-x">0</span></p>
+                <p>Player O: <span id="score-o">0</span></p>
+            </div>
+        </div>
+
+        <div class="popup" id="popup">
+            <h2 id="popup-message"></h2>
+            <button onclick="resetGame()">Play Again</button>
+        </div>
+
+        <script>
+            let gameBoardElement, gameStatusElement, popup, popupMessage;
+            let boardSize, gameBoard, currentPlayer, gameActive;
+            let scoreX = 0, scoreO = 0;
+
+            function startGame(size) {
+                boardSize = size;
+                gameBoard = Array(boardSize * boardSize).fill('');
+                currentPlayer = 'X';
+                gameActive = true;
+
+                // Show game screen
+                document.getElementById('home-screen').style.display = 'none';
+                document.getElementById('game-screen').style.display = 'block';
+
+                // Set the title and create the board
+                document.getElementById('game-title').textContent = `${boardSize}x${boardSize} Mode`;
+                createBoard();
+
+                // Set the initial status message
+                gameStatusElement = document.getElementById('game-status');
+                gameStatusElement.textContent = `Player ${currentPlayer}'s Turn`;
+
+                popup = document.getElementById('popup');
+                popupMessage = document.getElementById('popup-message');
+            }
+
+            function createBoard() {
+                gameBoardElement = document.getElementById('game-board');
+                gameBoardElement.innerHTML = '';
+                gameBoardElement.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
+
+                for (let i = 0; i < boardSize * boardSize; i++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    cell.dataset.index = i;
+                    cell.addEventListener('click', handleCellClick);
+                    gameBoardElement.appendChild(cell);
+                }
+            }
+
+            function handleCellClick(event) {
+                const cell = event.target;
+                const index = cell.dataset.index;
+
+                if (gameBoard[index] || !gameActive) return;
+
+                gameBoard[index] = currentPlayer;
+                cell.textContent = currentPlayer;
+                cell.classList.add(currentPlayer.toLowerCase());
+
+                if (checkWinner()) {
+                    showPopup(`${currentPlayer} Wins!`);
+                    updateScore(currentPlayer);
+                    gameActive = false;
+                    return;
+                }
+
+                if (!gameBoard.includes('')) {
+                    showPopup("It's a Draw!");
+                    gameActive = false;
+                    return;
+                }
+
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                gameStatusElement.textContent = `Player ${currentPlayer}'s Turn`;
+            }
+
+            function checkWinner() {
+                const winningCombinations = [];
+                for (let i = 0; i < boardSize; i++) {
+                    winningCombinations.push(Array.from({ length: boardSize }, (_, j) => i * boardSize + j)); // Row combinations
+                    winningCombinations.push(Array.from({ length: boardSize }, (_, j) => j * boardSize + i)); // Column combinations
+                }
+
+                // Diagonal combinations
+                winningCombinations.push(Array.from({ length: boardSize }, (_, i) => i * (boardSize + 1))); // Left-to-right diagonal
+                winningCombinations.push(Array.from({ length: boardSize }, (_, i) => (i + 1) * (boardSize - 1))); // Right-to-left diagonal
+
+                return winningCombinations.some(combo => {
+                    if (combo.every(index => gameBoard[index] === currentPlayer)) {
+                        combo.forEach(index => document.querySelector(`.cell[data-index='${index}']`).classList.add('winning'));
+                        return true;
+                    }
+                    return false;
+                });
+            }
+
+            function updateScore(winner) {
+                if (winner === 'X') {
+                    scoreX++;
+                    document.getElementById('score-x').textContent = scoreX;
+                } else {
+                    scoreO++;
+                    document.getElementById('score-o').textContent = scoreO;
+                }
+            }
+
+            function showPopup(message) {
+                popupMessage.textContent = message;
+                popup.style.display = 'flex';
+            }
+
+            function resetGame() {
+                // Reset the game but not the score
+                gameBoard = Array(boardSize * boardSize).fill('');
+                currentPlayer = 'X';
+                gameActive = true;
+                popup.style.display = 'none';
+                gameStatusElement.textContent = `Player ${currentPlayer}'s Turn`;
+                createBoard();
+            }
+
+            function goHome() {
+                document.getElementById('home-screen').style.display = 'block';
+                document.getElementById('game-screen').style.display = 'none';
+                resetGame(); // Reset the game when returning to home
+            }
+        </script>
+    </body>
+    </html>
