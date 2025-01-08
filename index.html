@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Home Page</title>
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background: #FFF; /* White background */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #555;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: white;
+            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #2193B0, #6DD5ED);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .ludo-button {
+            background: linear-gradient(135deg, #FF9A9E, #FF6A88); /* Red-pink gradient for Ludo */
+        }
+
+        .ludo-button:hover {
+            background: linear-gradient(135deg, #FF6A88, #FF9A9E);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Game Hub</h1>
+        <a href="tsp.html"><button onclick="openGame('water-sort')">Tile slide puzzle</button></a>
+        <a href="ttt.html"><button onclick="openGame('tic-tac-toe')">Tic-Tac-Toe2</button></a>
+        <a href="Math Game.html"><button onclick="openGame('Math Game')">Math Game</button>
+        <!-- <button class="ludo-button" onclick="openGame('coming soon')">coming soon</button> -->
+    </div>
+
+    <script>
+        // function openGame(gameName) {
+        //     alert(`Starting ${gameName}...`); 
+        //     // You can replace the alert with actual navigation or functionality.
+        // }
+    </script>
+</body>
+</html>
