@@ -150,7 +150,7 @@
             color: #ffffff;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
-        @media (max-width: 600px) {
+        @media (max-width: fit-content) {
             h1 {
                 font-size: 2rem;
             }
@@ -182,8 +182,8 @@
         .container {
             text-align: center;
             width: 100%;
-            max-width: 500px;
-            padding: 20px;
+            max-width: fit-content;
+            padding: 10px;
             background: #FFF; /* White background */
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -209,13 +209,12 @@
         <div class="button-container">
             <button id="3x3-btn">3x3 Puzzle</button>
             <button id="4x4-btn">4x4 Puzzle</button>
-            <button id="5x5-btn">5x5 Puzzle</button>
             <a href="index.html"><button>Back</button></a>
         </div>
     </div><br><br>
 
     <!-- Game Tab -->
-   <center> <div class="container" id="game-tab" style="display: none;">
+    <div class="container" id="game-tab" style="display: none;">
         <h1 id="game-title">Puzzle Game</h1>
         <div class="stats">
             <div>Moves: <span id="moves">0</span></div>
@@ -227,7 +226,7 @@
             <button id="reset-btn">Reset</button>
             <button id="back-btn">Back</button>
         </div>
-    </div></center>
+    </div>
 
     <script>
         const homeTab = document.getElementById('home-tab');
