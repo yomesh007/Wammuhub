@@ -7,28 +7,61 @@
     <style>
         /* Styling for the Math Game */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            margin: 0;
-            padding: 0;
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+        /* Dropdown Menu Style */
+        .dropdown {
+            position: relative;
+            display: inline-block;
         }
 
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #4F6D7A;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 1rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #FF6F61;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
         .game-container {
+            text-align: center;
+            width: 100%;
             max-width: 400px;
-            margin: 50px auto;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            padding: 20px;
+            background: linear-gradient(180deg, #B5FFFC , #FFDEE9);/* Soft pink to mint gradient */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
-            color: #ffeb3b;
-            font-size: 2em;
+            font-size: 2.5rem;
             margin-bottom: 20px;
+            color: #555;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         #question {
@@ -49,18 +82,47 @@
         }
 
         button {
-            padding: 12px 25px;
-            background-color: #00bfae;
-            border: none;
-            border-radius: 5px;
+            width: 70%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.2rem;
             color: white;
-            font-size: 18px;
+            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: transform 0.2s, background 0.3s;
+        }
+        .button1 {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: white;
+            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
         }
 
         button:hover {
-            background-color: #2575fc;
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #2193B0, #6DD5ED);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 1rem;
+            }
         }
 
         .stats {
@@ -87,9 +149,47 @@
         #restart:hover {
             background-color: #00a497;
         }
+        .header h1 {
+            margin: 0 auto;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        .h11{
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        .header {
+            width: 100%;
+            padding: 1px 20px;
+            background: #4F6D7A;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
+    <br><br><br><br><br>
+      <!-- Header -->
+    <div class="header">
+        <div class="dropdown">
+            <button class="button1">Menu</button>
+            <div class="dropdown-content">
+                <a href="Math Game.html" onclick="goHome()">Home</a>
+                <a href="mathin.html" onclick="showInstructions()">Instructions</a>
+                <a href="mathab.html" >about</a>
+            </div>
+        </div>
+        <h1 class="h11">Welcome!</h1>
+    </div>
         <div class="game-container">
         <h1>Math Game</h1>
         <p id="question">Loading...</p>
