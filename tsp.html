@@ -7,21 +7,20 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
+            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-             background: linear-gradient(135deg, #6a82fb, #fc5c7d);
-            color: #fff;
+            min-height: 100vh;
+            flex-direction: column;
+            color: #333;
         }
 
         h1 {
             margin-bottom: 1rem;
             font-size: 3.5rem;
             text-align: center;
-            color: ##f1c40f;
+            color: #000000;
             text-shadow:  0px 5px 15px rgba(0, 0, 0, 0.5);
         }
 
@@ -39,28 +38,25 @@
         }
 
         button {
-            background: linear-gradient(145deg, #f39c12, #f1c40f);
-            padding: 20px 40px;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
             font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            color: #fff;
+            color: white;
+            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
             border: none;
-            border-radius: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4), -5px -5px 15px rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
         }
 
         button:hover {
-            background-color: #00b3b3;
-            box-shadow:  10px 10px 25px rgba(0, 0, 0, 0.6), -10px -10px 25px rgba(255, 255, 255, 0.2);
-            transform: translateY(-10px);
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #2193B0, #6DD5ED);
         }
 
         button:active {
-            background-color: #009999;
-            transform: translateY(2px);
-            box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.4), inset -3px -3px 7px rgba(255, 255, 255, 0.1);
+            transform: scale(0.95);
         }
 
         #puzzle-container {
@@ -117,108 +113,109 @@
             }
         }
 
-        /* Hamburger Menu */
-        #menu-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 2rem;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            background: linear-gradient(145deg, #8e44ad, #9b59b6);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5), -5px -5px 15px rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Dropdown Menu Style */
+        .dropdown {
+            position: relative;
+            display: inline-block;
         }
 
-        #menu {
+        .dropdown-content {
+            display: none;
             position: absolute;
-            top: 80px;
-            left: 20px;
-            background: linear-gradient(145deg, #8e44ad, #9b59b6);
-            border-radius: 12px;
-            display: none;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5), -5px -5px 15px rgba(255, 255, 255, 0.1);
+            background-color: #4F6D7A;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
         }
 
-        #menu a {
-           display: block;
-            padding: 15px 25px;
-            color: #fff;
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
             text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            transition: color 0.3s ease;
+            display: block;
+            font-size: 1rem;
         }
 
-        #menu a:hover {
-             color: #f1c40f;
+        .dropdown-content a:hover {
+            background-color: #FF6F61;
         }
 
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .h11{
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
 
-        /* About Section */
-        #about-section {
-            display: none;
-            color: #00ffff;
+            button {
+                padding: 12px;
+                font-size: 1rem;
+            }
+        }
+        .header h1 {
+            margin: 0 auto;
+            font-size: 1.8rem;
             text-align: center;
+        }
+        .header {
+            width: 100%;
+            padding: 5px 1px;
+            background: #4F6D7A;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
             padding: 20px;
+            background: #FFF; /* White background */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
-<body>
-
-    <!-- Hamburger Menu Button -->
-    <button id="menu-btn">&#9776;</button>
-    <div id="menu">
-        <a href="#" id="home-link">Home</a>
-        <a href="#" id="instructions-link">Instructions</a>
-        <a href="#" id="about-link">About</a>
+<body><br><br><br><br><br>
+     <!-- Header -->
+     <div class="header">
+        <div class="dropdown">
+            <button class="menu-btn">Menu</button>
+            <div class="dropdown-content">
+                <a href="tsp.html" onclick="goHome()">Home</a>
+                <a href="tspin.html" onclick="showInstructions()">Instructions</a>
+                <a href="tspab.html" >about</a>
+            </div>
+        </div>
+        <h1 class="h11">Welcome!</h1>
     </div>
-
     <!-- Home Tab -->
-    <div id="home-tab">
-        <h1>Tile Slide Puzzle</h1>
+    <div id="home-tab" class="container">
+        <h1>Tile Slide Puzzle</h1><br>
         <div class="button-container">
             <button id="3x3-btn">3x3 Puzzle</button>
             <button id="4x4-btn">4x4 Puzzle</button>
             <button id="5x5-btn">5x5 Puzzle</button>
             <a href="index.html"><button>Back</button></a>
         </div>
-        <div id="instructions" style="color: #00ffff; text-align: center; margin-top: 20px;">
-            <p>Click on any tile adjacent to the empty space to move it and solve the puzzle!</p>
-        </div>
-    </div>
-
-    <!-- About Section -->
-    <div id="about-section">
-        <h2>About Tile Slide Puzzle</h2>
-        <p>
-            The Tile Slide Puzzle is a classic sliding puzzle game where the objective is to rearrange the tiles to form a complete sequence. In this game, you have to arrange numbered tiles in ascending order from 1 to n, where n is the size of the grid (e.g., 3x3, 4x4, or 5x5).
-        </p>
-        <p>
-            <strong>Objective:</strong> The goal is to move the tiles around the grid and place them in the correct order. The empty space allows you to slide tiles into it.
-        </p>
-        <p>
-            <strong>Gameplay:</strong> 
-            <ul>
-                <li>Click on any tile adjacent to the empty space to move it.</li>
-                <li>The puzzle is solved when all tiles are in the correct order, starting from 1 and ending with the largest number (e.g., 1, 2, 3, ..., n).</li>
-                <li>Tiles can only be moved if they are adjacent to the empty space.</li>
-                <li>Try to solve the puzzle in the fewest moves and the least time!</li>
-            </ul>
-        </p>
-        <button id="back-about-btn">Back to Home</button>
-    </div>
+    </div><br><br>
 
     <!-- Game Tab -->
-    <div id="game-tab" style="display: none;">
+   <center> <div class="container" id="game-tab" style="display: none;">
         <h1 id="game-title">Puzzle Game</h1>
         <div class="stats">
             <div>Moves: <span id="moves">0</span></div>
@@ -230,7 +227,7 @@ box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5), -5px -5px 15px rgba(255, 255, 255, 
             <button id="reset-btn">Reset</button>
             <button id="back-btn">Back</button>
         </div>
-    </div>
+    </div></center>
 
     <script>
         const homeTab = document.getElementById('home-tab');
@@ -389,28 +386,6 @@ box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5), -5px -5px 15px rgba(255, 255, 255, 
             gameTab.style.display = 'none';
         });
 
-        // Menu toggle
-        menuBtn.addEventListener('click', () => {
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        });
-
-        // About Section
-        document.getElementById('about-link').addEventListener('click', () => {
-            homeTab.style.display = 'none';
-            gameTab.style.display = 'none';
-            aboutSection.style.display = 'block';
-        });
-
-        document.getElementById('back-about-btn').addEventListener('click', () => {
-            homeTab.style.display = 'block';
-            gameTab.style.display = 'none';
-            aboutSection.style.display = 'none';
-        });
-
-        // Instructions Section
-        document.getElementById('instructions-link').addEventListener('click', () => {
-            instructions.style.display = instructions.style.display === 'none' ? 'block' : 'none';
-        });
     </script>
 </body>
 </html>
