@@ -22,7 +22,37 @@
             flex-direction: column;
             color: #333;
         }
+        /* Dropdown Menu Style */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #4F6D7A;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 1rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #FF6F61;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
         .container {
             text-align: center;
             width: 100%;
@@ -62,14 +92,6 @@
             transform: scale(0.95);
         }
 
-        .ludo-button {
-            background: linear-gradient(135deg, #FF9A9E, #FF6A88); /* Red-pink gradient for Ludo */
-        }
-
-        .ludo-button:hover {
-            background: linear-gradient(135deg, #FF6A88, #FF9A9E);
-        }
-
         @media (max-width: 600px) {
             h1 {
                 font-size: 2rem;
@@ -80,14 +102,51 @@
                 font-size: 1rem;
             }
         }
+        .header h1 {
+            margin: 0 auto;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        .h11{
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        .header {
+            width: 100%;
+            padding: 1px 20px;
+            background: #4F6D7A;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
+      <!-- Header -->
+    <div class="header">
+        <div class="dropdown">
+            <button class="menu-btn">Menu</button>
+            <div class="dropdown-content">
+                <a href="index.html" onclick="goHome()">Home</a>
+                <a href="indexab.html" >about</a>
+            </div>
+        </div>
+        <h1 class="h11">Welcome!</h1>
+    </div>
     <div class="container">
         <h1>Game Hub</h1>
         <a href="tsp.html"><button onclick="openGame('water-sort')">Tile slide puzzle</button></a>
-        <a href="ttt.html"><button onclick="openGame('tic-tac-toe')">Tic-Tac-Toe2</button></a>
+        <a href="ttthome.html"><button onclick="openGame('tic-tac-toe')">Tic-Tac-Toe2</button></a>
         <a href="Math Game.html"><button onclick="openGame('Math Game')">Math Game</button>
+        
         <!-- <button class="ludo-button" onclick="openGame('coming soon')">coming soon</button> -->
     </div>
 
