@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game About</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #555;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .about-content {
+            background-color: #f3f7f7;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .back-btn {
+            width: 30%;
+            padding: 15px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #2193B0, #6DD5ED);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Add audio element for button click sound -->
+    <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2023/12/30/audio-233951.mp3" preload="auto"></audio>
+
+    <div class="about-content">
+        <h1>About the Games</h1>
+
+        <h2>1. Tile Slide Puzzle</h2>
+        <ul>
+          <li><strong>Objective:</strong> Arrange the tiles in ascending order by sliding them into the empty space.</li>
+          <br>
+          <li><strong>Modes:</strong>
+            <ul>
+              <li>3x3: Beginner-friendly with 9 tiles.</li>
+              <li>4x4: Medium difficulty with 16 tiles.</li>
+              <li>5x5: Challenging mode with 25 tiles.</li>
+            </ul>
+          </li>
+          
+          <br><li><strong>Features:</strong> Simple controls, reset and back buttons, and a move counter.</li>
+          <br><li><strong>Why Play?</strong> Improve logic, focus, and enjoy solving fun puzzles.</li>
+        </ul>
+      
+        <h2>2. Math Puzzle Game</h2>
+        <ul>
+          <br><li><strong>Objective:</strong> Solve math problems involving addition (+), subtraction (-), and multiplication (*).</li>
+          <br><li><strong>Gameplay:</strong>
+            <ul>
+              <li>Answer random math problems within a time limit.</li>
+              <li>Earn points for correct answers and improve your math skills.</li>
+            </ul>
+          </li>
+          <br><li><strong>Features:</strong> Multiple difficulty levels, interactive UI, and a score tracker.</li>
+          <br><li><strong>Why Play?</strong> Enhance mental calculations and problem-solving abilities.</li>
+        </ul>
+      
+        <h2>3. Tic-Tac-Toe</h2>
+        <ul>
+          <br><li><strong>Objective:</strong> Be the first player to align three or more symbols (X or O) in a row, column, or diagonal.</li>
+          <br><li><strong>Modes:</strong>
+            <ul>
+              <li>3x3: The classic version of the game.</li>
+              <li>4x4: A slightly bigger grid for more complexity.</li>
+              <li>5x5: A challenging grid for advanced players.</li>
+            </ul>
+          </li>
+          <br><li><strong>Features:</strong> Multiplayer support, responsive design, and an interactive interface.</li>
+          <br><li><strong>Why Play?</strong> Enjoy a timeless strategy game that sharpens logical thinking and decision-making skills.</li>
+        </ul>
+
+        <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        // Play sound when any button is clicked
+        function playSound() {
+            document.getElementById('click-sound').play();
+        }
+
+        function goBack() {
+            playSound(); // Play sound when the button is pressed
+            // Redirects the user to the previous page
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
