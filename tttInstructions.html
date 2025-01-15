@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Instructions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #555;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);;
+        }
+
+        ul {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #333;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .instructions-content {
+            background-color: #f3f7f7;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: auto
+        }
+
+        .back-btn {
+            width: 30%;
+            padding: 15px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #2193B0, #6DD5ED);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Add audio element for button click sound -->
+    <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2023/12/30/audio-233951.mp3" preload="auto"></audio>
+
+    <div class="instructions-content">
+        <h1>Game Instructions</h1>
+        <ul>
+            <li><strong>Objective:</strong> The goal of the game is to place your marks ("X" or "O") on the grid and align them in a row, column, or diagonal.</li>
+            <li><strong>How to Play:</strong> Players take turns clicking on empty cells. The player who manages to align three marks in a row wins the round.</li>
+            <li><strong>Grid Sizes:</strong> You can choose between three different grid sizes: 3x3, 4x4, and 5x5. The larger the grid, the more challenging the game becomes!</li>
+            <li><strong>Winning Conditions:</strong> To win, place three of your marks in a straight line, either horizontally, vertically, or diagonally.</li>
+            <li><strong>Game Reset:</strong> Press the "Reset Game" button to start a new game at any time.</li>
+            <li><strong>Draw:</strong> If all cells are filled and no player has won, the game is declared a draw.</li>
+        </ul>
+        <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        // Play sound when any button is clicked
+        function playSound() {
+            document.getElementById('click-sound').play();
+        }
+
+        function goBack() {
+            playSound(); // Play sound when the button is pressed
+            // Redirects the user to the previous page
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
