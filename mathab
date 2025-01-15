@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game About</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #555;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .about-content {
+            background-color: #f3f7f7;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .back-btn {
+            width: 30%;
+            padding: 15px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #2193B0, #6DD5ED);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Add audio element for button click sound -->
+    <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2023/12/30/audio-233951.mp3" preload="auto"></audio>
+
+    <div class="about-content">
+        <h1>About Math Puzzle Game</h1>
+  <ul>
+    <li><strong>Objective:</strong> Solve mathematical puzzles by performing addition (+), subtraction (-), and multiplication (*) operations.</li>
+    <br>
+    <li><strong>Gameplay:</strong> 
+      <ul>
+        <li>Players are presented with random math equations or problems.</li>
+        <li>Select the correct answer from multiple choices or input the solution.</li>
+        <li>The faster and more accurately you solve, the higher your score.</li>
+      </ul>
+    </li>
+    <br>
+    <li><strong>Features:</strong>
+      <ul>
+        <li>Multiple difficulty levels: Easy, Normal, and Hard.</li>
+        <li>Timed challenges to test speed and accuracy.</li>
+        <li>Interactive and colorful interface to keep players engaged.</li>
+        <li>Score tracker to monitor progress.</li>
+      </ul>
+    </li>
+    <br>
+    <li><strong>Why Play?</strong> 
+      <ul>
+        <li>Enhance math skills and mental calculations.</li>
+        <li>Boost focus and problem-solving abilities.</li>
+        <li>Fun and educational experience for all age groups.</li>
+      </ul>
+    </li>
+  </ul>
+  <br>
+        <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        // Play sound when any button is clicked
+        function playSound() {
+            document.getElementById('click-sound').play();
+        }
+
+        function goBack() {
+            playSound(); // Play sound when the button is pressed
+            // Redirects the user to the previous page
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
