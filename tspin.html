@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Instructions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #555;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);;
+        }
+
+        ul {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #333;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .instructions-content {
+            background-color: #f3f7f7;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: auto
+        }
+
+        .back-btn {
+            width: 30%;
+            padding: 15px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #2193B0, #6DD5ED);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Add audio element for button click sound -->
+    <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2023/12/30/audio-233951.mp3" preload="auto"></audio>
+
+    <div class="instructions-content">
+        <h1>How to Play Tile Slide Puzzle</h1>
+        <ul>
+          <li><strong>Step 1:</strong> Select a mode from the main menu (3x3, 4x4, or 5x5).</li>
+          <li><strong>Step 2:</strong> Observe the grid. One tile space will always be empty.</li>
+          <li><strong>Step 3:</strong> Click or swipe a tile adjacent to the empty space to move it.</li>
+          <li><strong>Step 4:</strong> Keep sliding the tiles until they are arranged in ascending order (1, 2, 3... up to the last number).</li>
+          <li><strong>Step 5:</strong> Complete the puzzle in the least number of moves and shortest time to achieve the best score.</li>
+          <li><strong>Additional Features:</strong>
+            <ul>
+              <li>Use the <strong>Reset</strong> button to start the current game over.</li>
+              <li>Use the <strong>Back</strong> button to return to the main menu and select a new mode.</li>
+            </ul>
+          </li>
+          <li><strong>Tip:</strong> Plan your moves ahead to avoid unnecessary steps and complete the puzzle efficiently!</li>
+        </ul>
+        <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        // Play sound when any button is clicked
+        function playSound() {
+            document.getElementById('click-sound').play();
+        }
+
+        function goBack() {
+            playSound(); // Play sound when the button is pressed
+            // Redirects the user to the previous page
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
