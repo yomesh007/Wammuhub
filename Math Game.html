@@ -5,19 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Game</title>
     <style>
-        /* Styling for the Math Game */
+        /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
+            margin: 0;
+            padding: 0;
             color: #333;
         }
-        /* Dropdown Menu Style */
-        .dropdown {
+
+        /* Fixed Header */
+        .header {
+            width: 100%;
+            padding: 1px 20px;
+            background: #4F6D7A;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+         /* Dropdown Menu Style */
+         .dropdown {
             position: relative;
             display: inline-block;
         }
@@ -47,12 +66,15 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        /* Game Container Styling */
         .game-container {
             text-align: center;
-            width: 98%;
+            width: 90%;
             max-width: 400px;
+            margin: 120px auto; /* Adjusted for fixed header */
             padding: 20px;
-            background: linear-gradient(180deg, #B5FFFC , #FFDEE9);/* Soft pink to mint gradient */
+            background: linear-gradient(180deg, #B5FFFC, #FFDEE9);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
@@ -60,8 +82,8 @@
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #555;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            color: #000000;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);text-align: center;
         }
 
         #question {
@@ -82,24 +104,12 @@
         }
 
         button {
-            width: 70%;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 1.2rem;
-            color: white;
-            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.3s;
-        }
-        .button1 {
             width: 100%;
             padding: 15px;
             margin: 10px 0;
             font-size: 1.2rem;
             color: white;
-            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            background: linear-gradient(135deg, #6DD5ED, #2193B0);
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -114,6 +124,7 @@
         button:active {
             transform: scale(0.95);
         }
+
         @media (max-width: 600px) {
             h1 {
                 font-size: 2rem;
@@ -135,62 +146,50 @@
             margin: 20px 0;
         }
 
-        #restart {
-            margin-top: 30px;
-            padding: 13px 25px;
+        .mode-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
             background-color: #00bfae;
+            color: white;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
-            color: white;
             cursor: pointer;
         }
 
-        #restart:hover {
-            background-color: #00a497;
-        }
-        .header h1 {
-            margin: 0 auto;
-            font-size: 1.8rem;
-            text-align: center;
+        .mode-btn:hover {
+            background-color: #008f80;
         }
         .h11{
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: #ffffff;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
-        .header {
-            width: 100%;
-            padding: 1px 20px;
-            background: #4F6D7A;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .header h1 {
+            margin: 0 auto;
+            font-size: 1.8rem;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <br><br><br><br><br>
-      <!-- Header -->
+    <!-- Header -->
     <div class="header">
         <div class="dropdown">
-            <button class="button1">Menu</button>
+            <button>Menu</button>
             <div class="dropdown-content">
-                <a href="Math Game.html" onclick="goHome()">Home</a>
-                <a href="mathin.html" onclick="showInstructions()">Instructions</a>
-                <a href="mathab.html" >about</a>
+                <a href="Math Game.html">Home</a>
+                <a href="mathin.html">Instructions</a>
+                <a href="mathab.html">About</a>
             </div>
         </div>
         <h1 class="h11">Welcome!</h1>
     </div>
-        <div class="game-container">
+
+    <!-- Game Content -->
+    <div class="game-container">
         <h1>Math Game</h1>
         <p id="question">Loading...</p>
         <input type="number" id="answer" placeholder="Enter your answer">
@@ -204,12 +203,10 @@
         <a href="index.html"><button class="mode-btn">Back</button></a>
     </div>
 
-
     <script>
         let score = 0;
         let streak = 0;
         let currentQuestion;
-        let difficulty = 'easy';
 
         const questionEl = document.getElementById("question");
         const answerEl = document.getElementById("answer");
@@ -219,39 +216,21 @@
         const streakEl = document.getElementById("streak");
         const restartBtn = document.getElementById("restart");
 
-        // Generate a random math question based on difficulty
+        // Generate a random math question
         function generateQuestion() {
-            let num1, num2, operation, answer;
-
-            // Define ranges for difficulty levels
-            if (difficulty === 'easy') {
-                num1 = Math.floor(Math.random() * 10) + 1;
-                num2 = Math.floor(Math.random() * 10) + 1;
-            } else if (difficulty === 'medium') {
-                num1 = Math.floor(Math.random() * 50) + 1;
-                num2 = Math.floor(Math.random() * 50) + 1;
-            } else {
-                num1 = Math.floor(Math.random() * 100) + 1;
-                num2 = Math.floor(Math.random() * 100) + 1;
-            }
-
-            // Randomly pick an operation
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
             const operations = ["+", "-", "*"];
-            operation = operations[Math.floor(Math.random() * operations.length)];
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+            let answer;
 
-            // Avoid division to prevent floating-point issues
-            if (operation === "+") {
-                answer = num1 + num2;
-            } else if (operation === "-") {
-                answer = num1 - num2;
-            } else {
-                answer = num1 * num2;
-            }
+            if (operation === "+") answer = num1 + num2;
+            else if (operation === "-") answer = num1 - num2;
+            else answer = num1 * num2;
 
             return { question: `${num1} ${operation} ${num2}`, answer };
         }
 
-        // Display the generated question
         function displayQuestion() {
             currentQuestion = generateQuestion();
             questionEl.textContent = currentQuestion.question;
@@ -259,7 +238,6 @@
             answerEl.value = "";
         }
 
-        // Start the game
         function startGame() {
             score = 0;
             streak = 0;
@@ -268,35 +246,29 @@
             displayQuestion();
         }
 
-        // Check the player's answer
         function checkAnswer() {
             const userAnswer = parseInt(answerEl.value);
             if (userAnswer === currentQuestion.answer) {
                 feedbackEl.textContent = "Correct!";
                 score++;
                 streak++;
-                scoreEl.textContent = score;
-                streakEl.textContent = streak;
             } else {
-                feedbackEl.textContent = `Wrong! The correct answer was ${currentQuestion.answer}.`;
+                feedbackEl.textContent = `Wrong! Correct: ${currentQuestion.answer}`;
                 streak = 0;
-                streakEl.textContent = streak;
             }
+            scoreEl.textContent = score;
+            streakEl.textContent = streak;
             displayQuestion();
         }
 
-        // Event listeners
         submitBtn.addEventListener("click", () => {
-            if (answerEl.value.trim() !== "") {
-                checkAnswer();
-            } else {
-                feedbackEl.textContent = "Please enter an answer.";
-            }
+            if (answerEl.value.trim() !== "") checkAnswer();
+            else feedbackEl.textContent = "Please enter an answer.";
         });
 
         restartBtn.addEventListener("click", startGame);
 
-        // Start the game on load
+        // Start game on load
         window.onload = startGame;
     </script>
 </body>
