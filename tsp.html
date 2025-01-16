@@ -2,48 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Tile Slide Puzzle</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(180deg, #FFDEE9, #B5FFFC); /* Soft pink to mint gradient */
             color: #333;
+            overflow: hidden;
         }
 
         h1 {
             margin-bottom: 1rem;
-            font-size: 3.5rem;
+            font-size: 3rem;
             text-align: center;
             color: #000000;
-            text-shadow:  0px 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        @keyframes bgAnimation {
-            0% { background: linear-gradient(45deg, #3f3f3f, #111, #3f3f3f); }
-            100% { background: linear-gradient(45deg, #111, #3f3f3f, #111); }
+            text-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
         }
 
         .button-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 10px;
             margin-top: 1rem;
         }
 
         button {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 1.2rem;
+            padding: 12px 20px;
+            font-size: 1rem;
             color: white;
-            background: linear-gradient(135deg, #6DD5ED, #2193B0); /* Blue gradient */
+            background: linear-gradient(135deg, #6DD5ED, #2193B0);
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -61,29 +56,29 @@
 
         #puzzle-container {
             display: grid;
-            gap: 10px;
+            gap: 5px;
             margin: 20px auto;
             background: #2a2a2a;
+            padding: 10px;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 300px;
         }
 
         .tile {
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            font-size: 1.2rem;
             font-weight: bold;
             background-color: #00ffff;
             color: white;
             border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            box-shadow: 0 0 10px #f9f9f9, 0 0 20px #ffffff;
             transition: transform 0.3s, box-shadow 0.3s;
             user-select: none;
-            width: 100%;
-            height: 100%;
             aspect-ratio: 1; /* Ensures tiles are square */
         }
 
@@ -100,71 +95,27 @@
 
         .stats {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 18px;
+            justify-content: space-between;
+            font-size: 1rem;
             margin-top: 10px;
         }
 
         /* Mobile Responsiveness */
         @media screen and (max-width: 600px) {
-            .tile {
-                font-size: 18px;
-            }
-        }
-
-        /* Dropdown Menu Style */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #4F6D7A;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            border-radius: 5px;
-        }
-
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 1rem;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #FF6F61;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        .h11{
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #ffffff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-        }
-        @media (max-width: fit-content) {
             h1 {
                 font-size: 2rem;
             }
 
             button {
-                padding: 12px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .tile {
                 font-size: 1rem;
             }
         }
-        .header h1 {
-            margin: 0 auto;
-            font-size: 1.8rem;
-            text-align: center;
-        }
+
         .header {
             width: 100%;
             padding: 5px 1px;
@@ -179,39 +130,75 @@
             z-index: 100;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
+        .header h1 {
+            margin: 0 auto;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #4F6D7A;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #FF6F61;
+        }
+
         .container {
             text-align: center;
             width: 100%;
-            max-width: fit-content;
-            padding: 10px;
-            background: #FFF; /* White background */
-            border-radius: 15px;
+            max-width: 400px;
+            padding: 15px;
+            background: #FFF;
+            border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
-<body><br><br><br><br><br>
-     <!-- Header -->
-     <div class="header">
+<body>
+    <!-- Header -->
+    <div class="header">
         <div class="dropdown">
             <button class="menu-btn">Menu</button>
             <div class="dropdown-content">
-                <a href="tsp.html" onclick="goHome()">Home</a>
-                <a href="tspin.html" onclick="showInstructions()">Instructions</a>
-                <a href="tspab.html" >about</a>
+                <a href="tsp.html">Home</a>
+                <a href="tspin.html">Instructions</a>
+                <a href="tspab.html">About</a>
             </div>
         </div>
-        <h1 class="h11">Welcome!</h1>
+        <h1>Welcome!</h1>
     </div>
+
     <!-- Home Tab -->
     <div id="home-tab" class="container">
-        <h1>Tile Slide Puzzle</h1><br>
+        <h1>Tile Slide Puzzle</h1>
         <div class="button-container">
             <button id="3x3-btn">3x3 Puzzle</button>
             <button id="4x4-btn">4x4 Puzzle</button>
-            <a href="index.html"><button>Back</button></a>
+            <button id="5x5-btn">5x5 Puzzle</button>
         </div>
-    </div><br><br>
+    </div>
 
     <!-- Game Tab -->
     <div class="container" id="game-tab" style="display: none;">
@@ -238,12 +225,6 @@
         const movesDisplay = document.getElementById('moves');
         const timerDisplay = document.getElementById('timer');
         const gameTitle = document.getElementById('game-title');
-        const instructions = document.getElementById('instructions');
-        const menuBtn = document.getElementById('menu-btn');
-        const menu = document.getElementById('menu');
-        const aboutSection = document.getElementById('about-section');
-        const backAboutButton = document.getElementById('back-about-btn');
-
         let tiles = [];
         let emptyTileIndex;
         let moves = 0;
@@ -251,41 +232,27 @@
         let timer;
         let gridSize = 3;
 
-        // Create and display puzzle tiles
         function createPuzzle() {
             tiles = [];
-            let tileNumber = 1;
-
-            for (let i = 0; i < gridSize * gridSize; i++) {
-                tiles.push(tileNumber++);
-            }
-
-            tiles[gridSize * gridSize - 1] = null; // Empty space
-            emptyTileIndex = gridSize * gridSize - 1; // Initially, empty space is at the last tile
+            for (let i = 1; i < gridSize * gridSize; i++) tiles.push(i);
+            tiles.push(null);
+            emptyTileIndex = tiles.length - 1;
             renderPuzzle();
         }
 
-        // Render puzzle tiles
         function renderPuzzle() {
             puzzleContainer.innerHTML = '';
-            puzzleContainer.style.gridTemplateColumns = `repeat(${gridSize}, 100px)`;
-            puzzleContainer.style.gridTemplateRows = `repeat(${gridSize}, 100px)`;
+            puzzleContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
             tiles.forEach((tile, index) => {
-                const tileDiv = document.createElement('div');
-                tileDiv.classList.add('tile');
-                if (tile === null) {
-                    tileDiv.classList.add('empty');
-                    tileDiv.addEventListener('click', () => moveTile(index));
-                } else {
-                    tileDiv.textContent = tile;
-                    tileDiv.addEventListener('click', () => moveTile(index));
-                }
-                puzzleContainer.appendChild(tileDiv);
+                const div = document.createElement('div');
+                div.className = tile === null ? 'tile empty' : 'tile';
+                if (tile) div.textContent = tile;
+                div.addEventListener('click', () => moveTile(index));
+                puzzleContainer.appendChild(div);
             });
-            updateStats();
+            movesDisplay.textContent = moves;
         }
 
-        // Move tile function
         function moveTile(index) {
             if (isAdjacent(index, emptyTileIndex)) {
                 tiles[emptyTileIndex] = tiles[index];
@@ -296,95 +263,71 @@
             }
         }
 
-        // Check if two tiles are adjacent
-        function isAdjacent(index1, index2) {
-            const row1 = Math.floor(index1 / gridSize);
-            const col1 = index1 % gridSize;
-            const row2 = Math.floor(index2 / gridSize);
-            const col2 = index2 % gridSize;
-            return (Math.abs(row1 - row2) === 1 && col1 === col2) || (Math.abs(col1 - col2) === 1 && row1 === row2);
+        function isAdjacent(i1, i2) {
+            const row1 = Math.floor(i1 / gridSize);
+            const col1 = i1 % gridSize;
+            const row2 = Math.floor(i2 / gridSize);
+            const col2 = i2 % gridSize;
+            return (Math.abs(row1 - row2) === 1 && col1 === col2) ||
+                   (Math.abs(col1 - col2) === 1 && row1 === row2);
         }
 
-        // Shuffle the tiles
         function shuffleTiles() {
-            const shuffledTiles = tiles.slice();
-            let count = 0;
-
-            while (count < 100) {
-                const randomTile = Math.floor(Math.random() * (gridSize * gridSize));
-                if (isAdjacent(randomTile, emptyTileIndex)) {
-                    tiles[emptyTileIndex] = tiles[randomTile];
-                    tiles[randomTile] = null;
-                    emptyTileIndex = randomTile;
-                    count++;
-                }
+            for (let i = 0; i < 1000; i++) {
+                const adjacentIndices = tiles
+                    .map((_, idx) => idx)
+                    .filter(idx => isAdjacent(idx, emptyTileIndex));
+                const randomIndex =
+                    adjacentIndices[
+                        Math.floor(Math.random() * adjacentIndices.length)
+                    ];
+                moveTile(randomIndex);
             }
+            moves = 0;
             renderPuzzle();
         }
 
-        // Timer function
+        function resetGame() {
+            moves = 0;
+            timeElapsed = 0;
+            clearInterval(timer);
+            createPuzzle();
+            renderPuzzle();
+        }
+
         function startTimer() {
             timer = setInterval(() => {
                 timeElapsed++;
                 const minutes = Math.floor(timeElapsed / 60);
                 const seconds = timeElapsed % 60;
-                timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                timerDisplay.textContent = `${minutes}:${seconds
+                    .toString()
+                    .padStart(2, '0')}`;
             }, 1000);
         }
 
-        // Reset the game
-        function resetGame() {
-            moves = 0;
-            timeElapsed = 0;
-            clearInterval(timer);
-            timerDisplay.textContent = '0:00';
-            createPuzzle();
-            startTimer();
-        }
-
-        // Update stats display
-        function updateStats() {
-            movesDisplay.textContent = moves;
-        }
-
-        // Initialize game with 3x3 puzzle
-        document.getElementById('3x3-btn').addEventListener('click', () => {
-            gridSize = 3;
-            homeTab.style.display = 'none';
-            gameTab.style.display = 'block';
-            gameTitle.textContent = `3x3 Puzzle`;
-            createPuzzle();
-            startTimer();
+        document.querySelectorAll('[id$="-btn"]').forEach(button => {
+            button.addEventListener('click', () => {
+                if (button.id === '3x3-btn') gridSize = 3;
+                if (button.id === '4x4-btn') gridSize = 4;
+                if (button.id === '5x5-btn') gridSize = 5;
+                homeTab.style.display = 'none';
+                gameTab.style.display = 'block';
+                gameTitle.textContent = `${gridSize}x${gridSize} Puzzle`;
+                resetGame();
+                startTimer();
+            });
         });
 
-        // Initialize game with 4x4 puzzle
-        document.getElementById('4x4-btn').addEventListener('click', () => {
-            gridSize = 4;
-            homeTab.style.display = 'none';
-            gameTab.style.display = 'block';
-            gameTitle.textContent = `4x4 Puzzle`;
-            createPuzzle();
-            startTimer();
-        });
-
-        // Initialize game with 5x5 puzzle
-        document.getElementById('5x5-btn').addEventListener('click', () => {
-            gridSize = 5;
-            homeTab.style.display = 'none';
-            gameTab.style.display = 'block';
-            gameTitle.textContent = `5x5 Puzzle`;
-            createPuzzle();
-            startTimer();
-        });
-
-        // Event listeners for buttons
         shuffleButton.addEventListener('click', shuffleTiles);
         resetButton.addEventListener('click', resetGame);
         backButton.addEventListener('click', () => {
+            clearInterval(timer);
             homeTab.style.display = 'block';
             gameTab.style.display = 'none';
         });
 
+        createPuzzle();
     </script>
 </body>
 </html>
